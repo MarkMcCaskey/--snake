@@ -38,3 +38,18 @@ void Snake::rotate()
 {
     
 }
+
+void Snake::set_score(int new_score)
+{
+  score = new_score;
+}
+
+int Snake::get_score(void)
+{
+  return score;
+}
+
+void increment_score(void)
+{
+  score+=kBlockValue;
+}
