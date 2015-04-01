@@ -12,3 +12,8 @@ Board::~Board()
 {
     SDL_Quit();
 }
+
+Block_type** Board::getGrid()
+{
+  return this.grid;
+}

@@ -6,8 +6,11 @@ class Board
 public:
     Board();
     ~Board();
-
+    enum class Block_type{apple, multiplier, wall};
+    const int kBoardHeight = 25;
+    const int kBoardWidth = 25;
     void draw_entities();
+    Block_type** getGrid();
 
 private:
     /**
@@ -22,4 +25,5 @@ private:
     */
     Snake player;
     SDL_Window* window;
+    Block_type grid[kBoardHeight][kBoardWidth];
 };
