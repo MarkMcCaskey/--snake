@@ -1,3 +1,5 @@
+#include <SDL2/SDL.h>
+
 #include <iostream>
 #include <cstdlib>
 #include "boost/program_options.hpp"
@@ -24,7 +26,7 @@ int main(int argc, char* argv[])
   }
   catch(po::error &e )
     {
-      //std::cerr << "Error: " e.what() << std::endl;
+      std::cerr << "Error: " << e.what() << std::endl;
       exit( EXIT_FAILURE );
     }
   exit( EXIT_SUCCESS );
