@@ -39,19 +39,19 @@ void Snake::rotate()
   switch(dir)
     {
     case Direction::down:
-      blocks.erase(0);
+      blocks.pop_front();
       blocks.push_back({blocks.back().first,blocks.back().second-1});
       break;
     case Direction::up:
-      blocks.erase(0);
+      blocks.pop_front();
       blocks.push_back({blocks.back().first,blocks.back().second+1});
       break;
     case Direction::right:
-      blocks.erase(0);
+      blocks.pop_front();
       blocks.push_back({blocks.back().first+1,blocks.back().second});
       break;
     case Direction::left:
-      blocks.erase(0);
+      blocks.pop_front();
       blocks.push_back({blocks.back().first-1,blocks.back().second});
       break;
     }
