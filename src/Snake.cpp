@@ -14,12 +14,16 @@ Snake::Snake(int x, int y, Direction d)
         {
             case Direction::down:
                 blocks.push_back({x, y-i});
+		break;
             case Direction::up:
                 blocks.push_back({x, y+i});
+		break;
             case Direction::right:
                 blocks.push_back({x+1, y});
+		break;
             case Direction::left:
                 blocks.push_back({x-1, y});
+		break;
         }
     }
 }
