@@ -1,14 +1,17 @@
 #include <SDL2/SDL.h>
+
 #include "Snake.hpp"
 
 class Board
 {
 public:
+    enum class Block_type{apple, multiplier, wall};
+    static const int kBoardHeight{25};
+    static const int kBoardWidth{25};
+
     Board();
     ~Board();
-    enum class Block_type{apple, multiplier, wall};
-    const int kBoardHeight = 25;
-    const int kBoardWidth = 25;
+
     void draw_entities();
     Block_type** getGrid();
 
