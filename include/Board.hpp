@@ -1,3 +1,4 @@
+#include <vector>
 #include <SDL2/SDL.h>
 
 #include "Snake.hpp"
@@ -5,15 +6,17 @@
 class Board
 {
 public:
-    enum class Block_type{apple, multiplier, wall};
-    static const int kBoardHeight{25};
-    static const int kBoardWidth{25};
+    enum class BlockType{empty, apple, multiplier, wall};
+    const int kBoardHeight;
+    const int kBoardWidth;
+    std::vector<std::vector<BlockType>> grid;
 
     Board();
+    Board(int w, int h);
     ~Board();
 
     void draw_entities();
-    Block_type** getGrid();
+    std::vector<std::vector<BlockType>> getGrid();
 
 private:
     /**
@@ -28,5 +31,5 @@ private:
     */
     Snake player;
     SDL_Window* window;
-    Block_type grid[kBoardHeight][kBoardWidth];
+
 };
