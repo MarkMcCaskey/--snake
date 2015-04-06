@@ -22,7 +22,22 @@ int main(int argc, char* argv[])
         {
             std::cout << desc << std::endl;
             exit( EXIT_SUCCESS );
-        }
+        } else if( vm.count("graphics") )
+	{
+	  switch(vm["graphics"].as<string>())
+	    {
+	    case "sdl":
+	      //set graphics mode to sdl
+	      break;
+	    case "ncurses":
+	      //set graphics mode to ncurses
+	      break;
+	    default:
+	      std::cout << "Option not recognized: " << vm["graphics"].as<string>() << std::endl;
+	      exit( EXIT_FAILURE );
+	      break;
+	    }
+	}
         po::notify(vm);
     }
     catch(po::error &e )
