@@ -6,11 +6,13 @@
 #include "../include/Board.hpp"
 
 namespace po = boost::program_options;
+enum class graphics_type{SDL, ncurses};
 
 int main(int argc, char* argv[])
 {
     Board bd{};
-
+    //default graphics set to SDL
+    graphics_type graphics = graphics_type::SDL;
     po::options_description desc( "Options" );
     desc.add_options()
         ("help", "print help text")
@@ -27,10 +29,10 @@ int main(int argc, char* argv[])
 	  switch(vm["graphics"].as<string>())
 	    {
 	    case "sdl":
-	      //set graphics mode to sdl
+	      graphics = graphics_type::SDL;
 	      break;
 	    case "ncurses":
-	      //set graphics mode to ncurses
+	      graphics = graphics_type::ncurses;
 	      break;
 	    default:
 	      std::cout << "Option not recognized: " << vm["graphics"].as<string>() << std::endl;
@@ -45,6 +47,10 @@ int main(int argc, char* argv[])
         std::cerr << "Error: " << e.what() << std::endl;
         exit( EXIT_FAILURE );
     }
+
+    //other logic here
+    //use options set above to change behavior down here
+    
     exit( EXIT_SUCCESS );
 }
 
