@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
     po::options_description desc( "Options" );
     desc.add_options()
         ("help", "print help text")
+	("graphics", "select a graphics style. Valid options: sdl, ncurses")
         ;
     po::variables_map vm;
     try{
@@ -35,7 +36,7 @@ int main(int argc, char* argv[])
 	      graphics = graphics_type::ncurses;
 	      break;
 	    default:
-	      std::cout << "Option not recognized: " << vm["graphics"].as<string>() << std::endl;
+	      std::cerr << "Error: option " << vm["graphics"].as<string>() << " not recognized" << std::endl;
 	      exit( EXIT_FAILURE );
 	      break;
 	    }
