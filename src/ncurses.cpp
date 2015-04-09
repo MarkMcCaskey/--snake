@@ -1,7 +1,7 @@
 #include <ncurses.h>
 #include <cstdlib>
 
-int graphics_loop( void )
+int graphics_loop()
 {
   //set up
   initscr();

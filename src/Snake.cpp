@@ -7,22 +7,22 @@ Snake::Snake(int x, int y, Direction d)
     // Pushes pairs (coordinates) into a vector.
     // Coordinates are viewed as cartesian coordinates
     // as opposed to SDL coordinates.
-    blocks.push_back({x, y});
+    blocks.push({x, y});
     for (int i = 1; i < kInitialSize; i++)
     {
         switch (d)
         {
             case Direction::down:
-                blocks.push_back({x, y-i});
+                blocks.push({x, y-i});
 		break;
             case Direction::up:
-                blocks.push_back({x, y+i});
+                blocks.push({x, y+i});
 		break;
             case Direction::right:
-                blocks.push_back({x+1, y});
+                blocks.push({x+1, y});
 		break;
             case Direction::left:
-                blocks.push_back({x-1, y});
+                blocks.push({x-1, y});
 		break;
         }
     }
@@ -40,38 +40,42 @@ void Snake::move(int dt)
 
 void Snake::rotate()
 {
-  switch(dir)
+    switch(dir)
     {
-    case Direction::down:
-      blocks.pop_front();
-      blocks.push_back({blocks.back().first,blocks.back().second-1});
-      break;
-    case Direction::up:
-      blocks.pop_front();
-      blocks.push_back({blocks.back().first,blocks.back().second+1});
-      break;
-    case Direction::right:
-      blocks.pop_front();
-      blocks.push_back({blocks.back().first+1,blocks.back().second});
-      break;
-    case Direction::left:
-      blocks.pop_front();
-      blocks.push_back({blocks.back().first-1,blocks.back().second});
-      break;
+        case Direction::down:
+            blocks.push(std::move(blocks.front()));
+            blocks.pop();
+            blocks.back().second -= 1;
+            break;
+        case Direction::up:
+            blocks.push(std::move(blocks.front()));
+            blocks.pop();
+            blocks.back().second += 1;
+            break;
+        case Direction::right:
+            blocks.push(std::move(blocks.front()));
+            blocks.pop();
+            blocks.back().first += 1;
+            break;
+        case Direction::left:
+            blocks.push(std::move(blocks.front()));
+            blocks.pop();
+            blocks.back().first -= 1;
+            break;
     }
 }
 
 void Snake::set_score(int new_score)
 {
-  score = new_score;
+    score = new_score;
 }
 
-int Snake::get_score(void)
+int Snake::get_score()
 {
-  return score;
+    return score;
 }
 
-void increment_score(void)
+void Snake::increment_score()
 {
-  score+=kBlockValue;
+    score += kBlockValue;
 }
