@@ -1,14 +1,8 @@
 #include <ncurses.h>
 #include <cstdlib>
 
-int graphics_loop()
+int graphics_and_input( void )
 {
-  //set up
-  initscr();
-  clear();
-  noecho();
-  cbreak();
-
   char input = '';
   bool loop = true;
   while( loop )
@@ -35,9 +29,22 @@ int graphics_loop()
 	}
       refresh();
     }
-
-  //end
-  endwin();
-
   return EXIT_SUCCESS;
+}
+
+void set_up( void )
+{
+  initscr();
+  clear();
+  noecho();
+  cbreak();
+  
+  //add additional setup code here
+}
+
+void end( void )
+{
+  endwin();
+  
+  //clean up everything that was set up
 }
