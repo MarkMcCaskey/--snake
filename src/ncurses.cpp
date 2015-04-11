@@ -1,5 +1,4 @@
-#include <ncurses.h>
-#include <cstdlib>
+#include "../include/ncurses.hpp"
 
 int graphics_and_input( void )
 {
@@ -38,6 +37,9 @@ void set_up( void )
   clear();
   noecho();
   cbreak();
+  keypad(stdscr, TRUE);
+  curs_set(0);
+  getmaxyx(stdscr,kScreenHeight,kScreenWidth);
   
   //add additional setup code here
 }
