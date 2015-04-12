@@ -1,6 +1,6 @@
 #include "../include/ncurses.hpp"
 
-int graphics_and_input( void )
+int graphics_and_input()
 {
   char input = '';
   bool loop = true;
@@ -31,7 +31,7 @@ int graphics_and_input( void )
   return EXIT_SUCCESS;
 }
 
-void set_up( void )
+void set_up()
 {
   initscr();
   clear();
@@ -44,7 +44,7 @@ void set_up( void )
   //add additional setup code here
 }
 
-void end( void )
+void end()
 {
   endwin();
   
