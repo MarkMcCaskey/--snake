@@ -2,7 +2,9 @@
 
 int graphics_and_input()
 {
-  char input = '';
+  int x = 0;
+  int y = 0;
+  char input = ' ';
   bool loop = true;
   while( loop )
     {
@@ -14,16 +16,20 @@ int graphics_and_input()
 	  loop = false;
 	  break;
 	case KEY_RIGHT:
-	  //logic here
+	  x++;
+	  mvaddch(y,x,'@');
 	  break;
 	case KEY_LEFT:
-	  //logic here
+	  x--;
+	  mvaddch(y,x,'@');
 	  break;
 	case KEY_DOWN:
-	  //logic here
+	  y++;
+	  mvaddch(y,x,'@');
 	  break;
 	case KEY_UP:
-	  //logic here
+	  y--;
+	  mvaddch(y,x,'@');
 	  break;
 	}
       refresh();

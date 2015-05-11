@@ -3,14 +3,15 @@
 #include <SDL2/SDL.h>
 #include <boost/program_options.hpp>
 
-#include "../include/Board.hpp"
+//#include "../include/Board.hpp"
+//#include "../include/ncurses.hpp"
 
 namespace po = boost::program_options;
 enum class graphics_type{SDL, ncurses};
 
 int main(int argc, char* argv[])
 {
-    Board bd{};
+  //   Board bd{};
     //default graphics set to SDL
     graphics_type graphics = graphics_type::SDL;
     po::options_description desc( "Options" );
@@ -27,16 +28,17 @@ int main(int argc, char* argv[])
             exit( EXIT_SUCCESS );
         } else if( vm.count("graphics") )
 	{
-	  switch(vm["graphics"].as<string>())
+	  switch(vm["graphics"].as<char>())
 	    {
-	    case "sdl":
+	    case 's':
 	      graphics = graphics_type::SDL;
 	      break;
-	    case "ncurses":
+	    case 'n':
 	      graphics = graphics_type::ncurses;
 	      break;
 	    default:
-	      std::cerr << "Error: option " << vm["graphics"].as<string>() << " not recognized" << std::endl;
+	      //      std::cerr << "Error: option " << vm["graphics"] << " not recognized" << std::endl;
+	      std::cerr << "Error: graphics option not recognized" << std::endl;
 	      exit( EXIT_FAILURE );
 	      break;
 	    }
@@ -49,6 +51,15 @@ int main(int argc, char* argv[])
         exit( EXIT_FAILURE );
     }
 
+    
+    switch( graphics )
+      {
+      case graphics_type::ncurses:
+	set_up();
+	graphics_and_input();
+	end();
+	break;
+      }
     //other logic here
     //use options set above to change behavior down here
     

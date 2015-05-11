@@ -7,5 +7,8 @@ void set_up();
 void end();
 
 //update these values later
-const int kScreenHeight {50};
-const int kScreenWidth {50};
+int kScreenHeight {50};
+int kScreenWidth {50};
+
+int x;
+int y;
